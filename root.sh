@@ -50,12 +50,12 @@ useradd --create-home --shell "/bin/bash" --groups wheel "${USERNAME}"
 # sudo usermod -aG wheel "${USERNAME}"
 
 # Force a password to be set for the new user the first time they log in.
-passwd --delete "${USERNAME}" # Delete the current password (if any) to force a password set on first login
+# passwd --delete "${USERNAME}" # Delete the current password (if any) to force a password set on first login
 passwd "${USERNAME}"
 # chage --lastday 0 "${USERNAME}" # Force password change on first login
 
 # Copy the SSH keys from the root user to the new user.
-rsync --archive --chown=${USERNAME}:${USERNAME} /root/.ssh /home/${USERNAME}
+# rsync --archive --chown=${USERNAME}:${USERNAME} /root/.ssh /home/${USERNAME}
 
 # Configure the firewall to allow SSH, HTTP and HTTPS traffic.
 systemctl enable firewalld
@@ -67,9 +67,9 @@ firewall-cmd --reload
 
 # Install fail2ban (automatically temporarily ban an IP address if it makes too many 
 # failed SSH login attempts).
-dnf -y install fail2ban
-systemctl enable fail2ban
-systemctl start fail2ban
+# dnf -y install fail2ban
+# systemctl enable fail2ban
+# systemctl start fail2ban
 
 # Install the migrate CLI tool.
 curl -L https://github.com/golang-migrate/migrate/releases/download/v4.14.1/migrate.linux-amd64.tar.gz | tar xvz 
