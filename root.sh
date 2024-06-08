@@ -38,7 +38,7 @@ dnf config-manager --set-enabled updates
 
 # Update all software packages. Using the --force-confnew flag means that configuration 
 # files will be replaced if newer ones are available.
-dnf upgrade --refresh -y
+# dnf upgrade --refresh -y
 
 # Set the system timezone and install all locales.
 timedatectl set-timezone ${TIMEZONE} 
