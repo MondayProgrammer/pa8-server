@@ -99,6 +99,11 @@ echo "THEBESTDEAL_DB_URL='mysql://${DB_USER}:${DB_PASSWORD}@/${DB_NAME}'" >> /et
 # dnf -y install caddy
 # systemctl enable caddy
 # systemctl start caddy
+sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https curl
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
+sudo apt update
+sudo apt install caddy
 
 echo "Script complete! Rebooting..." 
 reboot
